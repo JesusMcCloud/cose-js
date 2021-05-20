@@ -8,7 +8,7 @@ const jsonfile = require('jsonfile');
 const base64url = require('base64url');
 const cbor = require('cbor');
 const deepEqual = require('./util.js').deepEqual;
-
+/*
 test('create sign-pass-01', (t) => {
   const example = jsonfile.readFileSync('test/Examples/sign1-tests/sign-pass-01.json');
   const p = example.input.sign0.protected;
@@ -34,7 +34,7 @@ test('create sign-pass-01', (t) => {
       t.true(deepEqual(actual, expected));
     });
 });
-
+*/
 test('create sign-pass-02', (t) => {
   const example = jsonfile.readFileSync('test/Examples/sign1-tests/sign-pass-02.json');
   const p = example.input.sign0.protected;
@@ -96,8 +96,8 @@ test('verify sign-pass-01', (t) => {
 
   const verifier = {
     'key': {
-      'x': base64url.toBuffer(example.input.sign0.key.x),
-      'y': base64url.toBuffer(example.input.sign0.key.y)
+      'n': base64url.toBuffer(example.input.sign0.key.n),
+      'e': base64url.toBuffer(example.input.sign0.key.e)
     }
   };
 
