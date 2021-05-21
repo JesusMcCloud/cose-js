@@ -219,6 +219,75 @@ test('verify sign-pass-03', (t) => {
     });
 });
 
+test('verify rsa-pss-01', (t) => {
+  const example = jsonfile.readFileSync('test/Examples/rsa-pss-examples/rsa-pss-01.json');
+
+  const verifier = {
+    'key': {
+      'n': Buffer.from(example.input.sign.signers[0].key.n_hex, 'hex'),
+      'e': Buffer.from(example.input.sign.signers[0].key.e_hex, 'hex'),
+      'kid': example.input.sign.signers[0].key.kid
+    }
+  };
+
+  const signature = Buffer.from(example.output.cbor, 'hex');
+
+  return cose.sign.verify(
+    signature,
+    verifier)
+    .then((buf) => {
+      t.true(Buffer.isBuffer(buf));
+      t.true(buf.length > 0);
+      t.is(buf.toString('utf8'), example.input.plaintext);
+    });
+});
+
+test('verify rsa-pss-02', (t) => {
+  const example = jsonfile.readFileSync('test/Examples/rsa-pss-examples/rsa-pss-02.json');
+
+  const verifier = {
+    'key': {
+      'n': Buffer.from(example.input.sign.signers[0].key.n_hex, 'hex'),
+      'e': Buffer.from(example.input.sign.signers[0].key.e_hex, 'hex'),
+      'kid': example.input.sign.signers[0].key.kid
+    }
+  };
+
+  const signature = Buffer.from(example.output.cbor, 'hex');
+
+  return cose.sign.verify(
+    signature,
+    verifier)
+    .then((buf) => {
+      t.true(Buffer.isBuffer(buf));
+      t.true(buf.length > 0);
+      t.is(buf.toString('utf8'), example.input.plaintext);
+    });
+});
+
+test('verify rsa-pss-03', (t) => {
+  const example = jsonfile.readFileSync('test/Examples/rsa-pss-examples/rsa-pss-03.json');
+
+  const verifier = {
+    'key': {
+      'n': Buffer.from(example.input.sign.signers[0].key.n_hex, 'hex'),
+      'e': Buffer.from(example.input.sign.signers[0].key.e_hex, 'hex'),
+      'kid': example.input.sign.signers[0].key.kid
+    }
+  };
+
+  const signature = Buffer.from(example.output.cbor, 'hex');
+
+  return cose.sign.verify(
+    signature,
+    verifier)
+    .then((buf) => {
+      t.true(Buffer.isBuffer(buf));
+      t.true(buf.length > 0);
+      t.is(buf.toString('utf8'), example.input.plaintext);
+    });
+});
+
 test('verify sign-fail-01', (t) => {
   const example = jsonfile.readFileSync('test/Examples/sign-tests/sign-fail-01.json');
 
