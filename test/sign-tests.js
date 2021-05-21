@@ -58,7 +58,7 @@ test('verify ecdsa-01', (t) => {
       t.is(buf.toString('utf8'), example.input.plaintext);
     });
 });
-/*
+
 test('create sign-pass-01', (t) => {
   const example = jsonfile.readFileSync('test/Examples/sign-tests/sign-pass-01.json');
   const p = example.input.sign.protected;
@@ -86,7 +86,7 @@ test('create sign-pass-01', (t) => {
       t.true(deepEqual(actual, expected));
     });
 });
-*/
+
 test('create sign-pass-02', (t) => {
   const example = jsonfile.readFileSync('test/Examples/sign-tests/sign-pass-02.json');
   const p = example.input.sign.protected;
@@ -154,8 +154,8 @@ test('verify sign-pass-01', (t) => {
 
   const verifier = {
     'key': {
-      'n': base64url.toBuffer(example.input.sign.signers[0].key.e),
-      'e': base64url.toBuffer(example.input.sign.signers[0].key.n),
+      'x': base64url.toBuffer(example.input.sign.signers[0].key.x),
+      'y': base64url.toBuffer(example.input.sign.signers[0].key.y),
       'kid': example.input.sign.signers[0].key.kid
     }
   };
